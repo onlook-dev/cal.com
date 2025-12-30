@@ -2,14 +2,7 @@ import type { Preview } from '@storybook/nextjs-vite';
 import '../src/styles/globals.css';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { Provider as TooltipProvider } from '@radix-ui/react-tooltip';
-import { ElementInspector } from './components/ElementInspector';
-import { IframeKeyboardRelay } from './components/IframeKeyboardRelay';
-import { IframeReloadListener } from './components/IframeReloadListener';
 import SVG from 'react-inlinesvg';
-
-// Disable iframe communication components for static builds (Chromatic/CI)
-// eslint-disable-next-line turbo/no-undeclared-env-vars
-const isStaticBuild = Boolean(process.env.CHROMATIC || process.env.CI);
 
 // Load cal.com icon sprites
 function IconSprites() {
@@ -28,9 +21,6 @@ const preview: Preview = {
     (Story) => (
       <TooltipProvider>
         <IconSprites />
-        {!isStaticBuild && <IframeReloadListener />}
-        {!isStaticBuild && <IframeKeyboardRelay />}
-        {!isStaticBuild && <ElementInspector />}
         <div className="font-sans">
           <Story />
         </div>
