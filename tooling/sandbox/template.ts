@@ -27,7 +27,8 @@ export const template = Template()
   )
   .setWorkdir('/home/user/code')
   .runCmd('yarn install')
-  .runCmd('npx playwright install --with-deps chromium')
+  // Install playwright browsers for the @onlook/storybook-plugin's playwright version
+  .runCmd('cd apps/storybook && npx playwright install --with-deps chromium')
   // Generate screenshots (CLI starts Storybook automatically and waits for it)
   .runCmd('cd apps/storybook && npx @onlook/storybook-plugin generate-screenshots')
   .setStartCmd(
